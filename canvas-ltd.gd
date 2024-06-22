@@ -11,6 +11,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			print(event)
+			print(char(event.unicode))
+
+			if event.keycode == KEY_ESCAPE:
+				print("escape")
 
 func populate_new_function(name: String, x, y):
 	var clone2 = function_scene.instantiate()
