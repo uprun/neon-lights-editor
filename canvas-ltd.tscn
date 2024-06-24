@@ -11,4 +11,3 @@ script = ExtResource("1_kk3qc")
 position = Vector2(1, 1)
 
 [node name="Caret" parent="." instance=ExtResource("3_4m5tk")]
-position = Vector2(112, 97)

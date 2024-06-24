@@ -16,10 +16,19 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			print(event)
-			print(char(event.unicode))
+			
+			
+			if event.keycode == KEY_BACKSPACE:
+				print("back space")
+				$Caret.remove_symbol()
+				return
 
 			if event.keycode == KEY_ESCAPE:
 				print("escape")
+				return
+			var symbol = char(event.unicode)
+			print(symbol)
+			$Caret.insert_symbol(symbol)
 
 func populate_new_function(name: String, x, y):
 	var clone2 = function_scene.instantiate()

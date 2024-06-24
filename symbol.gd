@@ -11,7 +11,7 @@ func previous_symbol():
 	if index > 0:
 		return get_parent().get_child(index - 1)
 	return null
-	
+
 func next_symbol():
 	var index = get_index()
 	if index < get_parent().get_child_count() - 1:
@@ -23,11 +23,24 @@ func _ready():
 	next_position = position
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if next_position != null and next_position != position:
-		position = next_position
-	pass
+	
+var speed = 0
+func _process(_delta):
+	if next_position != position:
+		var diff = (position - next_position)
+		var length = diff.length()
+		if  length < 1:
+			position = next_position
+			speed = 0
+		else:
+			if speed * 2 > length:
+				speed = length * 0.8
+			else:
+				speed = (speed + 1) * 1.1
+			position -= diff.normalized() * speed
+
+func fly_up():
+	next_position.y -= get_size().y
 
 func get_size():
 	var font = $name.get_theme_font("normal_font") as Font
@@ -56,13 +69,28 @@ func set_text(text):
 	(get_node("name") as RichTextLabel).text = text
 	update_position()
 
+func get_further_side_global_position():
+	var size = get_size()
+	
+	var cursor_next_position = get_parent().to_global(next_position)
+	print('next', cursor_next_position)
+	
+	cursor_next_position.y += size.y/2
+	cursor_next_position.x += size.x
+	return cursor_next_position
 
 func _on_name_gui_input(event):
 	#print(event)
 	if (event is InputEventMouseButton && event.pressed && event.button_index == 1):
 		var click_local = (event as InputEventMouseButton)
-		get_parent().get_parent().get_node("Caret").next_position = click_local.global_position
-		print()
-		#get_parent().populate_new_function(function_range[0], function_range[1])
-			
-	pass # Replace with function body.
+		var size = get_size()
+		var cursor_next_position = global_position
+		var caret = get_parent().get_parent().get_node("Caret")
+		cursor_next_position.y += size.y/2 
+		caret.function_under_focus = get_parent()
+		caret.insert_index = get_index()
+		if click_local.position.x > size.x/2:
+			cursor_next_position.x += size.x
+			caret.insert_index += 1
+		print(cursor_next_position)
+		caret.next_position = cursor_next_position
