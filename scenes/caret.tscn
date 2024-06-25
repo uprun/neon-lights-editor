@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs3a67jtdp0tt"]
+
+[ext_resource type="Script" path="res://scenes/caret.gd" id="1_k75a4"]
+[ext_resource type="PackedScene" uid="uid://b7a6kqu0q7qmt" path="res://scenes/rocket-engine.tscn" id="2_u5tjj"]
+
+[node name="Caret" type="Node2D"]
+script = ExtResource("1_k75a4")
+
+[node name="Rocket-engine" parent="." instance=ExtResource("2_u5tjj")]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx5x5argghwtb"]
+
+[ext_resource type="Script" path="res://scenes/ghost-symbol.gd" id="1_85urf"]
+[ext_resource type="FontFile" uid="uid://ciqtkemu1dggv" path="res://Hack-Regular.ttf" id="2_1tcly"]
+[ext_resource type="PackedScene" uid="uid://b7a6kqu0q7qmt" path="res://scenes/rocket-engine.tscn" id="3_brh0o"]
+
+[node name="ghost-symbol" type="Node2D"]
+script = ExtResource("1_85urf")
+
+[node name="name" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_right = 295.0
+offset_bottom = 42.0
+theme_override_fonts/normal_font = ExtResource("2_1tcly")
+theme_override_font_sizes/normal_font_size = 70
+text = "addAlias112123"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Rocket-engine" parent="." instance=ExtResource("3_brh0o")]
+
+[connection signal="destination_reached" from="Rocket-engine" to="." method="_on_rocketengine_destination_reached"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwpkvmjtlypod"]
+
+[ext_resource type="Script" path="res://scenes/symbol.gd" id="1_e7m24"]
+[ext_resource type="FontFile" uid="uid://ciqtkemu1dggv" path="res://Hack-Regular.ttf" id="2_83vef"]
+[ext_resource type="PackedScene" uid="uid://b7a6kqu0q7qmt" path="res://scenes/rocket-engine.tscn" id="3_gm6ry"]
+
+[node name="symbol" type="Node2D"]
+script = ExtResource("1_e7m24")
+
+[node name="name" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_right = 295.0
+offset_bottom = 42.0
+theme_override_fonts/normal_font = ExtResource("2_83vef")
+theme_override_font_sizes/normal_font_size = 70
+text = "addAlias112123"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Rocket-engine" parent="." instance=ExtResource("3_gm6ry")]
+
+[connection signal="gui_input" from="name" to="." method="_on_name_gui_input"]

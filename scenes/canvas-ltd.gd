@@ -1,6 +1,6 @@
 extends Node2D
 
-var function_scene = preload("res://function-node.tscn")
+var function_scene = preload("res://scenes/function-node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +16,6 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			print(event)
-			
 			
 			if event.keycode == KEY_BACKSPACE:
 				print("back space")
