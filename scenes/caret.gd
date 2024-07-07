@@ -18,8 +18,24 @@ func remove_symbol():
 	if function_under_focus != null and insert_index != null:
 		function_under_focus.remove_symbol(insert_index)
 		set_index(insert_index - 1)
+		
+func move_left():
+	if function_under_focus != null and insert_index != null:
+		set_index(insert_index - 1)
+
+func move_right():
+	if function_under_focus != null and insert_index != null:
+		set_index(insert_index + 1)
 
 func set_index (index):
 	insert_index = index
 	var use_position = function_under_focus.get_symbol_global_position_further_side(insert_index)
 	$"Rocket-engine".update_position(use_position)
+
+
+func _on_rocketengine_request_to_shift_position(shift):
+	position += shift
+
+
+func _on_rocketengine_request_to_set_position(another_position):
+	position = another_position

@@ -7,3 +7,6 @@
 script = ExtResource("1_k75a4")
 
 [node name="Rocket-engine" parent="." instance=ExtResource("2_u5tjj")]
+
+[connection signal="request_to_set_position" from="Rocket-engine" to="." method="_on_rocketengine_request_to_set_position"]
+[connection signal="request_to_shift_position" from="Rocket-engine" to="." method="_on_rocketengine_request_to_shift_position"]

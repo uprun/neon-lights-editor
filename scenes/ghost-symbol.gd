@@ -17,3 +17,11 @@ func set_text(text):
 
 func _on_rocketengine_destination_reached():
 	queue_free()
+
+
+func _on_rocketengine_request_to_set_position(another_position):
+	position = another_position
+
+
+func _on_rocketengine_request_to_shift_position(shift):
+	position += shift

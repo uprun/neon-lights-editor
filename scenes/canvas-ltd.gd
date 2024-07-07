@@ -17,6 +17,14 @@ func _unhandled_input(event):
 		if event.pressed:
 			print(event)
 			
+			if event.keycode == KEY_LEFT:
+				$Caret.move_left()
+				return
+			
+			if event.keycode == KEY_RIGHT:
+				$Caret.move_right()
+				return
+			
 			if event.keycode == KEY_BACKSPACE:
 				print("back space")
 				$Caret.remove_symbol()

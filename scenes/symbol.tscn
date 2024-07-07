@@ -22,3 +22,5 @@ shortcut_keys_enabled = false
 [node name="Rocket-engine" parent="." instance=ExtResource("3_gm6ry")]
 
 [connection signal="gui_input" from="name" to="." method="_on_name_gui_input"]
+[connection signal="request_to_set_position" from="Rocket-engine" to="." method="_on_rocketengine_request_to_set_position"]
+[connection signal="request_to_shift_position" from="Rocket-engine" to="." method="_on_rocketengine_request_to_shift_position"]

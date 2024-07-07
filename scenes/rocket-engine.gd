@@ -5,16 +5,19 @@ var speed = 0
 
 signal destination_reached
 
+signal request_to_shift_position(shift)
+signal request_to_set_position(another_position)
+
 func _ready():
 	next_position = get_parent().position
 
 func _process(_delta):
-	var parent = get_parent()
-	if next_position != parent.position:
-		var diff = (parent.position - next_position)
+	var current_position = get_parent().position
+	if next_position != current_position:
+		var diff = (current_position - next_position)
 		var length = diff.length()
 		if  length < 1:
-			parent.position = next_position
+			request_to_set_position.emit(next_position)
 			speed = 0
 			destination_reached.emit()
 		else:
@@ -22,7 +25,8 @@ func _process(_delta):
 				speed = length * 0.8
 			else:
 				speed = (speed + 1) * 1.1
-			parent.position -= diff.normalized() * speed
+			var shift = -diff.normalized() * speed
+			request_to_shift_position.emit(shift)
 
 func position_changed():
 	return next_position != get_parent().position
