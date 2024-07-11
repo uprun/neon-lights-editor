@@ -8,6 +8,8 @@
 script = ExtResource("1_kk3qc")
 
 [node name="function-node" parent="." instance=ExtResource("2_8fwfj")]
-position = Vector2(1, 1)
+position = Vector2(-1, 0)
 
 [node name="Caret" parent="." instance=ExtResource("3_4m5tk")]
+
+[connection signal="symbol_has_been_removed" from="function-node" to="." method="_on_functionnode_symbol_has_been_removed"]

@@ -1,17 +1,13 @@
 extends Node2D
 
 var function_scene = preload("res://scenes/function-node.tscn")
+var ghost_symbol_scene = preload("res://scenes/ghost-symbol.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	pass # Replace with function body.
+	$Caret.function_under_focus = $"function-node"
+	$Caret.set_index(0)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
@@ -33,14 +29,25 @@ func _unhandled_input(event):
 			if event.keycode == KEY_ESCAPE:
 				print("escape")
 				return
+			
+			if event.keycode == KEY_ENTER:
+				$Caret.insert_symbol('\n')
+				return
+			
+			if event.keycode == KEY_UP:
+				$Caret.move_up()
+				return
+			
+			if event.keycode == KEY_DOWN:
+				$Caret.move_down()
+				return
+			
 			var symbol = char(event.unicode)
 			print(symbol)
 			$Caret.insert_symbol(symbol)
 
-func populate_new_function(name: String, x, y):
-	var clone2 = function_scene.instantiate()
-	var new_name = name + ".js"
-	clone2.file_name_1 = new_name
-	clone2.position.x = x + 100
-	clone2.position.y = y
-	self.add_child(clone2)
+func _on_functionnode_symbol_has_been_removed(symbol):
+	var ghost_symbol = ghost_symbol_scene.instantiate()
+	ghost_symbol.global_position = symbol.global_position
+	ghost_symbol.set_text(symbol.text)
+	add_child(ghost_symbol)

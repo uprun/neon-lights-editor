@@ -1,12 +1,13 @@
 extends Node2D
 
-
 # so I want to be able to edit the code
 # and to see how it executes
 # what can I do with minimal resources?
 # I can be recursive as much a possible
 
 var text = null
+
+signal set_caret_at_index(index)
 
 func previous_symbol():
 	var index = get_index()
@@ -52,10 +53,8 @@ func _on_name_gui_input(event):
 			caret_index += 1
 		caret.set_index(caret_index)
 
-
 func _on_rocketengine_request_to_set_position(another_position):
 	position = another_position
-
 
 func _on_rocketengine_request_to_shift_position(shift):
 	position += shift

@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready():
+	fly_up()
+
 func fly_up():
 	$"Rocket-engine".shift_position(Vector2(0, -get_size().y)) 
 
