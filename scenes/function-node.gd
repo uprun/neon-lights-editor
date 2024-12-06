@@ -14,11 +14,15 @@ func _ready():
 		add_child(clone)
 		clone.set_text(x)
 
-func insert_symbol(symbol, index):
+func insert_symbol(symbol, index, position):
 	var clone = symbol_scene.instantiate()
 	add_child(clone)
-	var clone_position = get_viewport_rect().size
-	clone_position.x = clone_position.x / 2
+	#var clone_position = get_viewport_rect().size
+	#clone_position.x = clone_position.x / 2
+	var clone_position = position
+	
+	
+	clone_position.y -= clone.get_size().y
 	(clone as Node2D).global_position = clone_position
 	move_child(clone, index)
 	clone.set_text(symbol)

@@ -13,7 +13,7 @@ func _process(_delta):
 
 func insert_symbol(symbol):
 	if function_under_focus != null and insert_index != null:
-		function_under_focus.insert_symbol(symbol, insert_index+1)
+		function_under_focus.insert_symbol(symbol, insert_index+1, position)
 		set_index(insert_index+1)
 		
 func remove_symbol():
