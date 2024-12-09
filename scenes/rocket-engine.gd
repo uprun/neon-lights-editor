@@ -44,9 +44,9 @@ func update_position(new_position):
 	else:
 		var use_position = new_position
 		var copy_y = use_position
-		copy_y.y = position.y
+		copy_y.y = get_parent().position.y
 		var copy_x = use_position
-		copy_x.x = position.x
+		copy_x.x = get_parent().position.x
 		var delta_y = copy_y - get_parent().position
 		var delta_x = copy_x - get_parent().position
 		if delta_x.length() < delta_y.length():
