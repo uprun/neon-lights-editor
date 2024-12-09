@@ -59,8 +59,8 @@ func set_index (index):
 		desired_locations.push_back(copy_x)
 		desired_locations.push_back(copy_y)
 	else:
-		desired_locations.push_back(copy_x)
 		desired_locations.push_back(copy_y)
+		desired_locations.push_back(copy_x)
 	
 	$"Rocket-engine".update_position(desired_locations.pop_front())
 
