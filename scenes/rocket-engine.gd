@@ -27,6 +27,10 @@ func _process(_delta):
 				speed = (speed + 1) * 1.1
 			var shift = -diff.normalized() * speed
 			request_to_shift_position.emit(shift)
+	else:
+		var next = desired_locations.pop_front()
+		if next != null:
+			next_position = next
 
 func position_changed():
 	return next_position != get_parent().position
