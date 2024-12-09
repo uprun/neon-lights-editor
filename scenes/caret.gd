@@ -53,6 +53,15 @@ func set_index (index):
 	copy_y.y = position.y
 	var copy_x = use_position
 	copy_x.x = position.x
+	var delta_y = copy_y - position
+	var delta_x = copy_x - position
+	if delta_x.length() < delta_y.length():
+		desired_locations.push_back(delta_x)
+		desired_locations.push_back(delta_y)
+	else:
+		desired_locations.push_back(delta_y)
+		desired_locations.push_back(delta_x)
+		
 	$"Rocket-engine".update_position(use_position)
 
 func _on_rocketengine_request_to_shift_position(shift):
