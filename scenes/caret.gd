@@ -57,10 +57,10 @@ func set_index (index):
 	var delta_x = copy_x - position
 	if delta_x.length() < delta_y.length():
 		desired_locations.push_back(copy_x)
-		desired_locations.push_back(copy_y)
+		desired_locations.push_back(use_position)
 	else:
 		desired_locations.push_back(copy_y)
-		desired_locations.push_back(copy_x)
+		desired_locations.push_back(use_position)
 	
 	$"Rocket-engine".update_position(desired_locations.pop_front())
 
