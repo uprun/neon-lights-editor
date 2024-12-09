@@ -56,8 +56,8 @@ func set_index (index):
 	var delta_y = copy_y - position
 	var delta_x = copy_x - position
 	if delta_x.length() < delta_y.length():
-		desired_locations.push_back(delta_x)
-		desired_locations.push_back(delta_y)
+		desired_locations.push_back(copy_x)
+		desired_locations.push_back(copy_y)
 	else:
 		desired_locations.push_back(delta_y)
 		desired_locations.push_back(delta_x)
