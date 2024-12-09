@@ -12,7 +12,7 @@ func _ready():
 	next_position = get_parent().position
 
 func get_destination_location():
-	var final = desired_locations.last()
+	var final = desired_locations.back()
 	if final == null:
 		return next_position
 	else:
