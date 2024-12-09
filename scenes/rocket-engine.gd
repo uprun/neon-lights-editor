@@ -11,6 +11,13 @@ signal request_to_set_position(another_position)
 func _ready():
 	next_position = get_parent().position
 
+func get_destination_location():
+	var final = desired_locations.last()
+	if final == null:
+		return next_position
+	else:
+		return final
+
 func _process(_delta):
 	var current_position = get_parent().position
 	if next_position != current_position:
