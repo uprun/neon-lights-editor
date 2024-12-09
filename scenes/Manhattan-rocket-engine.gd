@@ -1,6 +1,6 @@
 extends "res://scenes/rocket-engine.gd"
 
-override signal request_to_shift_position(shift)
+signal request_to_shift_position(shift)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
