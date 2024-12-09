@@ -5,7 +5,7 @@ var speed = 0
 
 signal destination_reached
 
-signal request_to_shift_position(shift)
+virtual signal request_to_shift_position(shift)
 signal request_to_set_position(another_position)
 
 func _ready():
