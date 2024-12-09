@@ -32,7 +32,10 @@ func position_changed():
 	return next_position != get_parent().position
 
 func update_position(new_position):
-	next_position = new_position
+	if new_position == get_parent().position:
+		request_to_set_position.emit(new_position)
+	else:
+		next_position = new_position
 
 func shift_position(delta: Vector2):
 	next_position += delta
