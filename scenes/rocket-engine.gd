@@ -31,11 +31,27 @@ func _process(_delta):
 func position_changed():
 	return next_position != get_parent().position
 
+
+var desired_locations = []
+
 func update_position(new_position):
 	if new_position == get_parent().position:
 		request_to_set_position.emit(new_position)
 	else:
-		next_position = new_position
+		var use_position = new_position
+		var copy_y = use_position
+		copy_y.y = position.y
+		var copy_x = use_position
+		copy_x.x = position.x
+		var delta_y = copy_y - get_parent().position
+		var delta_x = copy_x - get_parent().position
+		if delta_x.length() < delta_y.length():
+			desired_locations.push_back(copy_x)
+			desired_locations.push_back(use_position)
+		else:
+			desired_locations.push_back(copy_y)
+			desired_locations.push_back(use_position)
+		next_position = desired_locations.pop_front()
 
 func shift_position(delta: Vector2):
 	next_position += delta

@@ -44,25 +44,13 @@ func move_down():
 		set_index(index)
 
 
-var desired_locations = []
+
 
 func set_index (index):
 	insert_index = index
 	var use_position = function_under_focus.get_symbol_global_position_further_side(insert_index)
-	var copy_y = use_position
-	copy_y.y = position.y
-	var copy_x = use_position
-	copy_x.x = position.x
-	var delta_y = copy_y - position
-	var delta_x = copy_x - position
-	if delta_x.length() < delta_y.length():
-		desired_locations.push_back(copy_x)
-		desired_locations.push_back(use_position)
-	else:
-		desired_locations.push_back(copy_y)
-		desired_locations.push_back(use_position)
 	
-	$"Rocket-engine".update_position(desired_locations.pop_front())
+	$"Rocket-engine".update_position(use_position)
 
 func _on_rocketengine_request_to_shift_position(shift):
 	position += shift
