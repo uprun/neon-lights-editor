@@ -61,8 +61,8 @@ func set_index (index):
 	else:
 		desired_locations.push_back(delta_y)
 		desired_locations.push_back(delta_x)
-		
-	$"Rocket-engine".update_position(use_position)
+	
+	$"Rocket-engine".update_position(desired_locations.pop_front())
 
 func _on_rocketengine_request_to_shift_position(shift):
 	position += shift
