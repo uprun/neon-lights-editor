@@ -58,4 +58,4 @@ func update_position(new_position):
 		next_position = desired_locations.pop_front()
 
 func shift_position(delta: Vector2):
-	next_position += delta
+	update_position( next_position + delta)
