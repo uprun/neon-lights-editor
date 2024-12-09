@@ -35,7 +35,7 @@ func set_text(text):
 
 func get_further_side_position():
 	var size = get_size()
-	var cursor_next_position = ($"Rocket-engine".desired_positions.last())
+	var cursor_next_position = ($"Rocket-engine".get_destination_location)
 	cursor_next_position.x += size.x
 	if text == '\n':
 		cursor_next_position.y += size.y
