@@ -69,4 +69,6 @@ func _on_rocketengine_request_to_shift_position(shift):
 
 func _on_rocketengine_request_to_set_position(another_position):
 	position = another_position
-	
+	var next = desired_locations.pop_front()
+	if next is null:
+		$"Rocket-engine".update_position()
