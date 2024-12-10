@@ -40,7 +40,7 @@ func _process(_delta):
 			next_position = next
 
 func position_changed():
-	return next_position != get_parent().position
+	return get_destination_location() != get_parent().position
 
 
 var desired_locations = []
@@ -49,14 +49,15 @@ func update_position(new_position):
 	if new_position == get_parent().position:
 		request_to_set_position.emit(new_position)
 	else:
+		var current_parent_position = get_parent().position
 		var use_position = new_position
 		var copy_y = use_position
-		copy_y.y = get_parent().position.y
+		copy_y.y = current_parent_position.y
 		var copy_x = use_position
-		copy_x.x = get_parent().position.x
-		var delta_y = copy_y - get_parent().position
-		var delta_x = copy_x - get_parent().position
-		if delta_x.length() < delta_y.length():
+		copy_x.x = current_parent_position.x
+		var delta_y = copy_y - current_parent_position
+		var delta_x = copy_x - current_parent_position
+		if delta_x.length() < delta_y.length() or delta_y.length() < 1.0:
 			desired_locations.push_back(copy_x)
 			desired_locations.push_back(use_position)
 		else:
